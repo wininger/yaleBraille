@@ -1,0 +1,11 @@
+inst/doc
+src/liblouis/*.o
+.Rproj.user
+.DS_Store
+*.o
+*.so
+.Rproj.user
+.DS_Store
+*.o
+*.so
+.Rhistory

@@ -1,0 +1,29 @@
+Package: yaleBraille
+Type: Package
+Title: Generate Braille-Enabled Graphics
+Version: 0.2.0
+Authors@R: person(
+    given = "Mike",
+    family = "Wininger",
+    email = "michael.wininger@yale.edu",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-7871-3292")
+  )
+Description: Generates data visualizations suited for low-vision and blind persons. Graphics intended for printing on swell paper. Utilizes the liblouis Braille translation library.
+License: LGPL (>= 2.1) | file LICENSE
+Imports:
+    grDevices,
+    graphics,
+    stats,
+    sysfonts,
+    showtext
+Encoding: UTF-8
+NeedsCompilation: yes
+URL: https://github.com/wininger/yaleBraille
+BugReports: https://github.com/wininger/yaleBraille/issues
+Config/roxygen2/version: 8.1.0
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

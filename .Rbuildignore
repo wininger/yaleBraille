@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.Rhistory$
+^\.DS_Store$
+^inst/tables/Makefile$
+^inst/tables/Makefile\.am$
+^inst/tables/Makefile\.in$
+^inst/tables/maketablelist\.sh$
+^README\.md$
+^NEWS\.md$
+^data-raw$
+^src/\.*\\.o$$
+^src/liblouis/.*\.o$
