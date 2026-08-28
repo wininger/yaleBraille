@@ -9,7 +9,7 @@ Authors@R: person(
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-7871-3292")
   )
-Description: Generates data visualizations suited for low-vision and blind persons. Graphics intended for printing on swell paper. Utilizes the liblouis Braille translation library.
+Description: Generates data visualizations suited for low-vision and blind persons. Graphics intended for printing on swell paper. Utilizes the 'liblouis' Braille translation library.
 License: LGPL (>= 2.1) | file LICENSE
 Imports:
     grDevices,
@@ -18,12 +18,16 @@ Imports:
     sysfonts,
     showtext
 Encoding: UTF-8
+Language: en-US
 NeedsCompilation: yes
 URL: https://github.com/wininger/yaleBraille
 BugReports: https://github.com/wininger/yaleBraille/issues
 Config/roxygen2/version: 8.1.0
+Config/Needs/check: spelling
 LazyData: true
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    spelling
 VignetteBuilder: knitr
+RoxygenNote: 7.3.3

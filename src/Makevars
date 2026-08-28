@@ -2,7 +2,8 @@ PKG_CFLAGS = -I./liblouis \
              -I$(R_INCLUDE_DIR) \
              -DPACKAGE_NAME=\"liblouis\" \
              -DPACKAGE_STRING='\"liblouis 3.38.0\"' \
-             -DPACKAGE_VERSION=\"3.38.0\"
+             -DPACKAGE_VERSION=\"3.38.0\" \
+             -Wno-format-truncation
 
 SOURCES = liblouis/commonTranslationFunctions.c \
           liblouis/compileTranslationTable.c \

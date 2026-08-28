@@ -7,6 +7,8 @@
 * R-hub: macos (R-devel, x86_64) — 0 errors, 1 warning, 2 notes
 * R-hub: macos (R-devel, arm64) — 0 errors, 1 warning, 2 notes
 * R-hub: windows (R-devel) — 0 errors, 1 warning, 2 notes
+* CRAN pre-check: windows (R-devel) — 0 errors, 0 warnings, 2 notes
+* CRAN pre-check: linux (R-devel) — 0 errors, 1 warning, 2 notes
 
 ## R CMD check results
 0 errors | 1 warning | 2-3 notes
@@ -60,5 +62,15 @@ the check itself, not pre-compiled files included in the source package.
 This is confirmed by git ls-files src/liblouis/ showing only .c source
 files and headers are tracked.
 
+### CRAN pre-check fixes (resubmission)
+Three issues identified in CRAN pre-check have been addressed:
+
+1. 'liblouis' now quoted in DESCRIPTION to avoid spell-check false positive.
+2. .github directory added to .Rbuildignore to exclude from tarball.
+3. -Wno-format-truncation added to src/Makevars to suppress false-positive
+   GCC 16 format-truncation warning in bundled liblouis source code. The
+   flagged snprintf calls are already guarded by explicit length checks
+   immediately preceding them.
+   
 ## Downstream dependencies
 None. This is a new submission.

@@ -11,3 +11,6 @@
 ^data-raw$
 ^src/\.*\\.o$$
 ^src/liblouis/.*\.o$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^\.github$
