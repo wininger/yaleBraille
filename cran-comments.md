@@ -28,10 +28,13 @@ the liblouis library (https://liblouis.io). Specifically:
 3. stderr — found in liblouis/logging.o. This is liblouis's internal
    logging mechanism.
 
-4. R_registerRoutines / R_useDynamicSymbols — these are fully
-   implemented in src/init.c for the package's own routines. The
-   warning about their absence on Windows refers to the liblouis object
-   files, which are a bundled external library.
+4. R_registerRoutines / R_useDynamicSymbols (Windows only) — fully
+   implemented in src/init.c for the package's own callable routine
+   (r_translate). The Windows checker flags the entire DLL because the
+   bundled liblouis object files (compiled via SOURCES in src/Makevars)
+   do not themselves call R_registerRoutines — nor should they, as they
+   are internal C library code, not R-callable functions. The
+   registration in init.c covers all functions exposed to R.
 
 These warnings do not appear on win-builder or mac-builder, only on
 R-hub, suggesting they may be specific to the R-hub build environment's
