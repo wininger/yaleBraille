@@ -40,6 +40,7 @@
 #include <sys/stat.h>
 
 #include "internal.h"
+#include <R.h>
 
 #define QUOTESUB 28 /* Stand-in for double quotes in strings */
 
@@ -1223,7 +1224,7 @@ _lou_findOpcodeName(TranslationTableOpcode opcode) {
 	static char scratchBuf[MAXSTRING];
 	/* Used by tools such as lou_debug */
 	if (opcode < 0 || opcode >= CTO_None) {
-		sprintf(scratchBuf, "%u", opcode);
+		snprintf(scratchBuf, MAXSTRING, "%u", opcode);
 		return scratchBuf;
 	}
 	return opcodeNames[opcode];
@@ -4692,7 +4693,16 @@ resolveSubtable(const char *table, const char *base, const char *searchPath) {
 				free(searchPath_copy);
 				goto failure;
 			}
-			sprintf(tableFile, "%s%c%s", dir, DIR_SEP, table);
+			{
+				size_t dirLen = strlen(dir);
+				size_t tableLen = strlen(table);
+				size_t needed = dirLen + 1 + tableLen;
+				if (needed < MAX_TABLEFILE_SIZE) {
+					memcpy(tableFile, dir, dirLen);
+					tableFile[dirLen] = DIR_SEP;
+					memcpy(tableFile + dirLen + 1, table, tableLen + 1);
+				}
+			}
 			if (stat(tableFile, &info) == 0 && !(info.st_mode & S_IFDIR)) {
 				_lou_logMessage(LOU_LOG_DEBUG, "found table %s", tableFile);
 				free(searchPath_copy);
@@ -4704,8 +4714,21 @@ resolveSubtable(const char *table, const char *base, const char *searchPath) {
 				free(searchPath_copy);
 				goto failure;
 			}
-			sprintf(tableFile, "%s%c%s%c%s%c%s", dir, DIR_SEP, "liblouis", DIR_SEP,
-					"tables", DIR_SEP, table);
+			{
+				size_t dirLen = strlen(dir);
+				size_t tableLen = strlen(table);
+				size_t needed = dirLen + 1 + strlen("liblouis") + 1 + strlen("tables") + 1 + tableLen;
+				if (needed < MAX_TABLEFILE_SIZE) {
+					char *p = tableFile;
+					memcpy(p, dir, dirLen); p += dirLen;
+					*p++ = DIR_SEP;
+					memcpy(p, "liblouis", 8); p += 8;
+					*p++ = DIR_SEP;
+					memcpy(p, "tables", 6); p += 6;
+					*p++ = DIR_SEP;
+					memcpy(p, table, tableLen + 1);
+				}
+			}
 			if (stat(tableFile, &info) == 0 && !(info.st_mode & S_IFDIR)) {
 				_lou_logMessage(LOU_LOG_DEBUG, "found table %s", tableFile);
 				free(searchPath_copy);
@@ -5327,7 +5350,7 @@ _lou_allocMem(AllocBuf buffer, int index, int srcmax, int destmax) {
 	case alloc_passbuf:
 		if (index < 0 || index >= MAXPASSBUF) {
 			_lou_logMessage(LOU_LOG_FATAL, "Index out of bounds: %d\n", index);
-			exit(3);
+			error("liblouis: fatal error");
 		}
 		if (destmax > sizePassbuf[index]) {
 			if (passbuf[index] != NULL) free(passbuf[index]);
