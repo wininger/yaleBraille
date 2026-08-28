@@ -3,39 +3,59 @@
 * win-builder (R-devel) — 0 errors, 0 warnings, 0 notes
 * win-builder (R-release) — 0 errors, 0 warnings, 0 notes
 * mac-builder (R-release, arm64) — 0 errors, 0 warnings, 0 notes
-* Windows Server 2022, R-devel (R-hub v2) — 0 errors, 1 warning, 2 notes
+* R-hub: linux (R-devel) — 0 errors, 1 warning, 3 notes
+* R-hub: macos (R-devel, x86_64) — 0 errors, 1 warning, 2 notes
+* R-hub: macos (R-devel, arm64) — 0 errors, 1 warning, 2 notes
+* R-hub: windows (R-devel) — 0 errors, 1 warning, 2 notes
 
 ## R CMD check results
-0 errors | 1 warning | 2 notes
+0 errors | 1 warning | 2-3 notes
 
-### WARNING: Compiled code (R-hub Windows only)
-The warning arises entirely from bundled third-party C source code from
+### WARNING: Compiled code (all R-hub platforms)
+This warning arises entirely from bundled third-party C source code from
 the liblouis library (https://liblouis.io). Specifically:
 
-1. The exit() calls in liblouis/compileTranslationTable.o and
-   liblouis/utils.o are part of liblouis's internal error-handling.
-   Modifying these would require forking liblouis and maintaining a
-   custom version, creating a significant long-term maintenance burden
-   and risk of divergence from the upstream library.
+1. exit() — found in liblouis/compileTranslationTable.o and
+   liblouis/utils.o. These are part of liblouis's internal
+   error-handling and cannot be removed without forking and maintaining
+   a custom version of liblouis.
 
-2. R_registerRoutines() and R_useDynamicSymbols() are already
+2. sprintf / __sprintf_chk — found in liblouis/compileTranslationTable.o,
+   liblouis/logging.o, liblouis/metadata.o, and liblouis/utils.o.
+   These are internal to liblouis and cannot be modified without
+   forking the library.
+
+3. stderr — found in liblouis/logging.o. This is liblouis's internal
+   logging mechanism.
+
+4. R_registerRoutines / R_useDynamicSymbols — these are fully
    implemented in src/init.c for the package's own routines. The
-   warning about their absence refers to the liblouis object files,
-   which are a bundled external library and not part of the package's
-   own native routine interface.
+   warning about their absence on Windows refers to the liblouis object
+   files, which are a bundled external library.
 
-This warning does not appear on win-builder (R-devel or R-release) or
-mac-builder, suggesting it may be specific to the R-hub build environment.
+These warnings do not appear on win-builder or mac-builder, only on
+R-hub, suggesting they may be specific to the R-hub build environment's
+stricter binary scanning.
 
 ### NOTE: New submission
 This is a new submission to CRAN.
 
 ### NOTE: Unable to verify current time
-Transient network issue on the local checking machine; not a package problem.
+Transient network issue on the local checking machine; not a package
+problem.
 
-## NOTEs
-* .github directory: used for R-hub CI checks, not part of the package
-* cran-comments.md: standard submission file, not part of the package
+### NOTE: .github directory
+Used for R-hub CI checks, listed in .Rbuildignore.
+
+### NOTE: cran-comments.md
+Standard submission file, listed in .Rbuildignore.
+
+### NOTE: Object files in source (Linux R-hub only)
+The Linux R-hub checker flags .o files found after compilation of the
+bundled liblouis C sources. These are build artifacts generated during
+the check itself, not pre-compiled files included in the source package.
+This is confirmed by git ls-files src/liblouis/ showing only .c source
+files and headers are tracked.
 
 ## Downstream dependencies
 None. This is a new submission.
