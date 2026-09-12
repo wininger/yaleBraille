@@ -2,7 +2,7 @@
 NULL
 #'
 #'
-#' @title Braile on Scatter or Line Plots
+#' @title Braille on Scatter or Line Plots
 #' @description Create Braille-enabled Scatter or Line Plot
 #' @param ... plot parameters as would typically be used in plot()
 #' @param x variable for plotting (independent variable, if y is not NULL)
@@ -13,7 +13,7 @@ NULL
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' yale = data.frame(yaleSports)
 #' plot_br(Weight~Height,data=yale,
 #'         over="Scatter Plot",
@@ -21,10 +21,8 @@ NULL
 #'         xlab="x-axis = Height (inches)",
 #'         ylab="y-axis = Weight (pounds)",
 #'         stem="plotScatter")
-#' }
-#' @examples
-#' \dontrun{
-#' yale = data(yaleSports)
+#'
+#' yale = data.frame(yaleSports)
 #' plot_br(sort(yale$Weight[1:20]),
 #'         over="Scatter Plot",
 #'         main="Yale Athletics Dataset",
@@ -32,9 +30,7 @@ NULL
 #'         ylab="y-axis = Weight (pounds)",
 #'         type="b",
 #'         stem="plotLine")
-#' }
-#' @examples
-#' \dontrun{
+#'
 #' air = airquality
 #' plot_br(air$Temp,air$Ozone,
 #'         over="Scatter Plot",

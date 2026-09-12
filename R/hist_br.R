@@ -1,7 +1,7 @@
 #' @useDynLib yaleBraille, .registration=TRUE
 NULL
 #'
-#' @title Braile on Histogram
+#' @title Braille on Histogram
 #' @description Create Braille-enabled Histogram
 #'
 #' @param ... plot parameters as would typically be used in hist()
@@ -13,7 +13,7 @@ NULL
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' yale = data.frame(yaleSports)
 #' hist_br(yale$Weight,
 #'         over="Histogram",
@@ -22,8 +22,7 @@ NULL
 #'         ylab="y-axis = Count (n athletes)",
 #'         stem="newHist")
 #' }
-#' @examples
-#' \dontrun{
+#' \donttest{
 #' air=airquality
 #' hist_br(air$Temp,
 #'        over="Histogram",

@@ -2,7 +2,7 @@
 % Please edit documentation in R/boxplot_br.R
 \name{boxplot_br}
 \alias{boxplot_br}
-\title{Braile on Box Plot}
+\title{Braille on Box Plot}
 \usage{
 boxplot_br(...)
 }
@@ -16,7 +16,7 @@ two-page .pdf file
 Create Braille-enabled Box Plot
 }
 \examples{
-\dontrun{
+\donttest{
 yale = data.frame(yaleSports)
 boxplot_br(Height~Sport,data=yale,
       over="Box Plot",
@@ -25,7 +25,7 @@ boxplot_br(Height~Sport,data=yale,
       ylab="y-axis = Height (inches)",
       stem="newBox")
 }
-\dontrun{
+\donttest{
 air = airquality
 air$Month = as.factor(air$Month)
 boxplot_br(Ozone~Month,data=air,

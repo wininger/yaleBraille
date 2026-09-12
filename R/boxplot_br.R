@@ -1,7 +1,7 @@
 #' @useDynLib yaleBraille, .registration=TRUE
 NULL
 #'
-#' @title Braile on Box Plot
+#' @title Braille on Box Plot
 #' @description Create Braille-enabled Box Plot
 #'
 #' @param ... plot parameters as would typically be used in boxplot()
@@ -10,7 +10,7 @@ NULL
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' yale = data.frame(yaleSports)
 #' boxplot_br(Height~Sport,data=yale,
 #'       over="Box Plot",
@@ -19,8 +19,7 @@ NULL
 #'       ylab="y-axis = Height (inches)",
 #'       stem="newBox")
 #' }
-#' @examples
-#' \dontrun{
+#' \donttest{
 #' air = airquality
 #' air$Month = as.factor(air$Month)
 #' boxplot_br(Ozone~Month,data=air,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pie_br.R
 \name{pie_br}
 \alias{pie_br}
-\title{Braile on Pie Chart}
+\title{Braille on Pie Chart}
 \usage{
 pie_br(...)
 }
@@ -16,7 +16,7 @@ two-page .pdf file
 Create Braille-enabled Pie Chart
 }
 \examples{
-\dontrun{
+\donttest{
 yale = data.frame(yaleSports)
 tbl = table(yale$Sport)
 pie_br(tbl,
@@ -26,7 +26,7 @@ pie_br(tbl,
        ylab=" ",
        stem="newPie")
 }
-\dontrun{
+\donttest{
 air = airquality
 air$Feel = cut(air$Temp,breaks=c(0,65,80,1000),labels=c("cool","warm","hot"))
 tbl = table(air$Feel)

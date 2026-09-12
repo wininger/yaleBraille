@@ -6,19 +6,13 @@ export(hist_br)
 export(pie_br)
 export(plot_br)
 export(translateToBraille)
-importFrom(grDevices,
-  dev.off,
-  pdf
-)
-importFrom(graphics,
-  axis,
-  barplot,
-  hist,
-  mtext,
-  par
-)
-importFrom(stats,
-  model.frame,
-  na.omit
-)
+importFrom(grDevices,dev.off)
+importFrom(grDevices,pdf)
+importFrom(graphics,axis)
+importFrom(graphics,barplot)
+importFrom(graphics,hist)
+importFrom(graphics,mtext)
+importFrom(graphics,par)
+importFrom(stats,model.frame)
+importFrom(stats,na.omit)
 useDynLib(yaleBraille, .registration=TRUE)

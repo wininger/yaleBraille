@@ -1,16 +1,23 @@
 Package: yaleBraille
 Type: Package
 Title: Generate Braille-Enabled Graphics
-Version: 0.2.0
-Authors@R: person(
-    given = "Mike",
-    family = "Wininger",
-    email = "michael.wininger@yale.edu",
-    role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0002-7871-3292")
+Version: 0.2.1
+Authors@R: c(
+    person(
+        given = "Mike",
+        family = "Wininger",
+        email = "michael.wininger@yale.edu",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-7871-3292")
+    ),
+    person(
+        given = "liblouis contributors",
+        role = c("ctb", "cph"),
+        comment = "Authors of the bundled liblouis C library (https://liblouis.io)"
+    )
   )
 Description: Generates data visualizations suited for low-vision and blind persons. Graphics intended for printing on swell paper. Utilizes the 'liblouis' Braille translation library.
-License: LGPL (>= 2.1) | file LICENSE
+License: LGPL (>= 2.1)
 Imports:
     grDevices,
     graphics,

@@ -377,7 +377,7 @@ serializeLanguageTag(const List *tag) {
 	int len = 0;
 	const List *l;
 	for (l = tag; l; l = l->tail) len = len + 1 + strlen(l->head);
-	char *s = malloc(len * sizeof(char));
+	char *s = malloc((len + 1) * sizeof(char));
 	s[0] = '\0';
 	for (l = tag; l; l = l->tail) {
 		if (l != tag) s = strcat(s, "-");
@@ -712,7 +712,7 @@ parseQuery(const char *query) {
 	if (!unicodeRange) {
 		// default value of unicode-range is determined by CHARSIZE
 		static char value[5] = "";
-		if (!*value) sprintf(value, "ucs%ld", CHARSIZE);
+		if (!*value) snprintf(value, 5, "ucs%ld", CHARSIZE);
 		FeatureWithImportance *f = memcpy(malloc(sizeof(FeatureWithImportance)),
 				(&(FeatureWithImportance){
 						feat_new(strdup("unicode-range"), strdup(value), strdup_, free),
@@ -769,7 +769,7 @@ analyzeTable(const char *table, int activeOnly) {
 			return NULL;
 		}
 
-		sprintf(fileName, "%s", *resolved);
+		snprintf(fileName, MAXSTRING, "%s", *resolved);
 		int k = 0;
 
 		for (k = 0; resolved[k]; k += 1) free(resolved[k]);
@@ -1032,14 +1032,14 @@ listDir(List *list, char *dirName) {
 	static char fileName[MAXSTRING];
 	WIN32_FIND_DATAA ffd;
 	HANDLE hFind;
-	sprintf(glob, "%s%c%c", dirName, DIR_SEP, '*');
+	snprintf(glob, MAXSTRING, "%s%c%c", dirName, DIR_SEP, '*');
 	hFind = FindFirstFileA(glob, &ffd);
 	if (hFind == INVALID_HANDLE_VALUE) {
 		_lou_logMessage(LOU_LOG_WARN, "%s is not a directory", dirName);
 	} else {
 		do {
 			if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-				sprintf(fileName, "%s%c%s", dirName, DIR_SEP, ffd.cFileName);
+				snprintf(fileName, MAXSTRING, "%s%c%s", dirName, DIR_SEP, ffd.cFileName);
 				list = list_conj(list, strdup(fileName), NULL, strdup_, free);
 			}
 		} while (FindNextFileA(hFind, &ffd));
@@ -1056,7 +1056,7 @@ listDir(List *list, char *dirName) {
 	struct dirent *file;
 	if ((dir = opendir(dirName))) {
 		while ((file = readdir(dir))) {
-			sprintf(fileName, "%s%c%s", dirName, DIR_SEP, file->d_name);
+			snprintf(fileName, MAXSTRING, "%s%c%s", dirName, DIR_SEP, file->d_name);
 			if (stat(fileName, &info) == 0 && !(info.st_mode & S_IFDIR)) {
 				list = list_conj(list, strdup(fileName), NULL, strdup_, free);
 			}

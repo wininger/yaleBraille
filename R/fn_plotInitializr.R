@@ -4,6 +4,7 @@ NULL
 # this helper function prepares a .pdf file for plotting
 # called by plotting functions
 fn_plotInitializr=function(a){
+  if (is.null(a$dir)){a$dir=paste0(tempdir(),"/")}
   # ~~ plotting parameters
   if (is.null(a$cex.main)){a$cex.main=2}
   if (is.null(a$cex)){a$cex=2}
@@ -21,6 +22,8 @@ fn_plotInitializr=function(a){
   # ~~ open a .pdf for plotting, and set margins
   writename = paste0(a$dir,a$stem,".pdf")
   pdf(writename, width=8.5, height=11)
+  oldpar = par(no.readonly = TRUE)
+  on.exit(par(oldpar))
   par(mai = c(3.5, 2, 3, 1), xpd = NA,lwd=3)
 
   # ~~ return updated arguments set

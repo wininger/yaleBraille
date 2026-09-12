@@ -2,7 +2,7 @@
 % Please edit documentation in R/hist_br.R
 \name{hist_br}
 \alias{hist_br}
-\title{Braile on Histogram}
+\title{Braille on Histogram}
 \usage{
 hist_br(x, breaks = 20, ...)
 }
@@ -20,7 +20,7 @@ two-page .pdf file
 Create Braille-enabled Histogram
 }
 \examples{
-\dontrun{
+\donttest{
 yale = data.frame(yaleSports)
 hist_br(yale$Weight,
         over="Histogram",
@@ -29,7 +29,7 @@ hist_br(yale$Weight,
         ylab="y-axis = Count (n athletes)",
         stem="newHist")
 }
-\dontrun{
+\donttest{
 air=airquality
 hist_br(air$Temp,
        over="Histogram",

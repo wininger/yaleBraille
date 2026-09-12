@@ -1,7 +1,7 @@
 #' @useDynLib yaleBraille, .registration=TRUE
 NULL
 #'
-#' @title Braile on Bar Plot
+#' @title Braille on Bar Plot
 #' @description Create Braille-enabled Bar Plot
 #'
 #' @param ... plot parameters as would typically be used in barplot()
@@ -10,7 +10,7 @@ NULL
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' yale = data.frame(yaleSports)
 #' tbl = table(yale$Sport)
 #' barplot_br(tbl,
@@ -20,8 +20,7 @@ NULL
 #'            ylab="y-axis = Count (n athletes)",
 #'            stem="newBar")
 #' }
-#' @examples
-#' \dontrun{
+#' \donttest{
 #' air = airquality
 #' air$Feel = cut(air$Temp,breaks=c(0,65,80,1000),labels=c("cool","warm","hot"))
 #' tbl = table(air$Feel)

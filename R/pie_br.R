@@ -1,7 +1,7 @@
 #' @useDynLib yaleBraille, .registration=TRUE
 NULL
 #'
-#' @title Braile on Pie Chart
+#' @title Braille on Pie Chart
 #' @description Create Braille-enabled Pie Chart
 #'
 #' @param ... plot parameters as would typically be used in pie()
@@ -10,7 +10,7 @@ NULL
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' yale = data.frame(yaleSports)
 #' tbl = table(yale$Sport)
 #' pie_br(tbl,
@@ -20,8 +20,7 @@ NULL
 #'        ylab=" ",
 #'        stem="newPie")
 #' }
-#' @examples
-#' \dontrun{
+#' \donttest{
 #' air = airquality
 #' air$Feel = cut(air$Temp,breaks=c(0,65,80,1000),labels=c("cool","warm","hot"))
 #' tbl = table(air$Feel)

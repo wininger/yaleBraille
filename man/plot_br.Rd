@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_br.R
 \name{plot_br}
 \alias{plot_br}
-\title{Braile on Scatter or Line Plots}
+\title{Braille on Scatter or Line Plots}
 \usage{
 plot_br(x, y = NULL, data = NULL, ...)
 }
@@ -22,7 +22,7 @@ two-page .pdf file
 Create Braille-enabled Scatter or Line Plot
 }
 \examples{
-\dontrun{
+\donttest{
 yale = data.frame(yaleSports)
 plot_br(Weight~Height,data=yale,
         over="Scatter Plot",
@@ -30,9 +30,8 @@ plot_br(Weight~Height,data=yale,
         xlab="x-axis = Height (inches)",
         ylab="y-axis = Weight (pounds)",
         stem="plotScatter")
-}
-\dontrun{
-yale = data(yaleSports)
+
+yale = data.frame(yaleSports)
 plot_br(sort(yale$Weight[1:20]),
         over="Scatter Plot",
         main="Yale Athletics Dataset",
@@ -40,8 +39,7 @@ plot_br(sort(yale$Weight[1:20]),
         ylab="y-axis = Weight (pounds)",
         type="b",
         stem="plotLine")
-}
-\dontrun{
+
 air = airquality
 plot_br(air$Temp,air$Ozone,
         over="Scatter Plot",

@@ -34,6 +34,7 @@
 #include <string.h>
 
 #include "internal.h"
+#include <R.h>
 
 void EXPORT_CALL
 _lou_logWidecharBuf(logLevels level, const char *msg, const widechar *wbuf, int wlen) {
@@ -58,7 +59,7 @@ _lou_logWidecharBuf(logLevels level, const char *msg, const widechar *wbuf, int 
 	for (i = 0; i < (int)strlen(msg); i++) logMsg[i] = msg[i];
 	p += strlen(msg);
 	for (i = 0; i < wlen; i++) {
-		p += sprintf(p, formatString, wbuf[i]);
+		p += snprintf(p, logMsg + logBufSize - p, formatString, wbuf[i]);
 	}
 	*p = '~';
 	p++;
@@ -205,8 +206,7 @@ lou_logFile(const char *fileName) {
 	if (logFile == NULL && initialLogFileName[0] != 0)
 		logFile = fopen(initialLogFileName, "a");
 	if (logFile == NULL) {
-		fprintf(stderr, "Cannot open log file %s\n", fileName);
-		logFile = stderr;
+		return;
 	}
 }
 
@@ -215,12 +215,8 @@ lou_logPrint(const char *format, ...) {
 #ifndef __SYMBIAN32__
 	va_list argp;
 	if (format == NULL) return;
-	if (logFile == NULL) logFile = fopen(initialLogFileName, "a");
-	if (logFile == NULL) logFile = stderr;
 	va_start(argp, format);
-	vfprintf(logFile, format, argp);
-	fprintf(logFile, "\n");
-	fflush(logFile);
+	REvprintf(format, argp);
 	va_end(argp);
 #endif
 }
@@ -228,6 +224,6 @@ lou_logPrint(const char *format, ...) {
 /* Close the log file */
 void EXPORT_CALL
 lou_logEnd(void) {
-	if (logFile != NULL && logFile != stderr) fclose(logFile);
+	if (logFile != NULL) fclose(logFile);
 	logFile = NULL;
 }

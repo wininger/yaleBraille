@@ -118,7 +118,7 @@ printRule(TranslationTableRule *rule, widechar *rule_string) {
 			if (rule_string[l] == '\0') {
 				// if a dot pattern can not be displayed, print an error message
 				char *message = (char *)malloc(50 * sizeof(char));
-				sprintf(message, "ERROR: provide a display rule for dots %s",
+				snprintf(message, 50, "ERROR: provide a display rule for dots %s",
 						_lou_showDots(&rule->charsdots[rule->charslen + k], 1));
 				l = 0;
 				while (message[l]) {

@@ -40,6 +40,7 @@
 #include <sys/stat.h>
 
 #include "internal.h"
+#include <R.h>
 
 /* Contributed by Michel Such <michel.such@free.fr> */
 #ifdef _WIN32
@@ -81,7 +82,7 @@ lou_getProgramPath(void) {
 
 				if (!length) {
 					printf("GetModuleFileName\n");
-					exit(3);
+					error("liblouis: fatal error");
 				}
 
 				if (length < size) {
@@ -101,7 +102,7 @@ lou_getProgramPath(void) {
 		free(buffer);
 	} else {
 		printf("GetModuleHandle\n");
-		exit(3);
+		error("liblouis: fatal error");
 	}
 
 	return path;
@@ -172,7 +173,7 @@ _lou_showString(widechar const *chars, int length, int forceHex) {
 
 			int leadingZeros;
 			int hexPos;
-			hexLength = sprintf(hexbuf, "%x", c);
+			hexLength = snprintf(hexbuf, sizeof(hexbuf), "%x", c);
 			switch (hexLength) {
 			case 1:
 			case 2:
@@ -315,7 +316,7 @@ _lou_showAttributes(TranslationTableCharacterAttributes a) {
 void EXPORT_CALL
 _lou_outOfMemory(void) {
 	_lou_logMessage(LOU_LOG_FATAL, "liblouis: Insufficient memory\n");
-	exit(3);
+	error("liblouis: fatal error");
 }
 
 #ifdef DEBUG

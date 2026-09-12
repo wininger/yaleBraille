@@ -2,7 +2,7 @@
 % Please edit documentation in R/barplot_br.R
 \name{barplot_br}
 \alias{barplot_br}
-\title{Braile on Bar Plot}
+\title{Braille on Bar Plot}
 \usage{
 barplot_br(...)
 }
@@ -16,7 +16,7 @@ two-page .pdf file
 Create Braille-enabled Bar Plot
 }
 \examples{
-\dontrun{
+\donttest{
 yale = data.frame(yaleSports)
 tbl = table(yale$Sport)
 barplot_br(tbl,
@@ -26,7 +26,7 @@ barplot_br(tbl,
            ylab="y-axis = Count (n athletes)",
            stem="newBar")
 }
-\dontrun{
+\donttest{
 air = airquality
 air$Feel = cut(air$Temp,breaks=c(0,65,80,1000),labels=c("cool","warm","hot"))
 tbl = table(air$Feel)

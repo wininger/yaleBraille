@@ -18,7 +18,9 @@ Mike Wininger, michael.wininger@yale.edu
 \references{
   None
 }
-\keyword{ package, accessibility, vision, graphics, visualization, braille, blind, biostatistcs, biostats}
+\keyword{package}
+\keyword{accessibility}
+\keyword{graphics}
 \examples{
   \dontrun{
      data(yaleSports)
