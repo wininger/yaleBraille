@@ -21,9 +21,8 @@ This is a resubmission addressing issues raised in the second CRAN review.
 
 ## Test environments
 - macOS aarch64 (local), R 4.4.3
-- r-hub: linux (R-devel), macos x86 (R-devel), macos-arm64 (R-devel),
-  windows (R-devel)
 - win-builder: R-release, R-devel, R-oldrelease
+- r-hub: linux (R-devel), macos-arm64 (R-devel), windows (R-devel)
 
 ## R CMD check results
 0 errors | 0 warnings | 1 note
