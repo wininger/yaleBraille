@@ -1,43 +1,33 @@
-## Resubmission (v0.2.1)
+## Resubmission (v0.2.2)
 
-This is a resubmission addressing all issues raised in the CRAN review.
+This is a resubmission addressing issues raised in the second CRAN review.
 
 ### Changes made:
 
-1. **Compiled code warnings (sprintf, stderr, exit)**
-   - Replaced `vfprintf(stderr,...)` in `logging.c` with `REvprintf()` 
-   - Replaced `exit()` in `utils.c` with R's `error()`
-   - Added `-D_FORTIFY_SOURCE=0` to `PKG_CFLAGS` in `src/Makevars` to 
-     suppress GCC's automatic `sprintf` -> `__sprintf_chk` substitution
+1. **\dontrun{} -> \donttest{}**
+   - Replaced remaining \dontrun{} with \donttest{} in
+     man/yaleBraille-package.Rd
 
-2. **Examples**
-   - Replaced `\dontrun{}` with `\donttest{}` in all 5 plotting functions
-   - Fixed `data(yaleSports)` -> `data.frame(yaleSports)` in `plot_br.R`
-   - Consolidated multiple `@examples` blocks into single blocks
+2. **References in DESCRIPTION**
+   - Added GitHub URL to Description field:
+     <https://github.com/wininger/yaleBraille>
+   - No formal publication exists yet for this package
 
-3. **Graphics parameter restore**
-   - Added `oldpar <- par(no.readonly = TRUE)` and `on.exit(par(oldpar))`
-     in `fn_plotInitializr()`
-
-4. **Output files**
-   - PDF output now defaults to `tempdir()` instead of working directory
-
-5. **DESCRIPTION**
-   - Added liblouis contributors as `ctb/cph` in `Authors@R`
-   - Removed `| file LICENSE` from License field
-   - Removed `LICENSE` file
+3. **Fixed example in man/yaleBraille-package.Rd**
+   - Corrected function name from fn_toBraille() to translateToBraille()
+   - Added required table argument to translateToBraille() call
+   - Removed \references{None} entry
+   - Fixed escaped underscore in description text
 
 ## Test environments
-
 - macOS aarch64 (local), R 4.4.3
-- r-hub: linux (R-devel), macos x86 (R-devel), macos-arm64 (R-devel), 
+- r-hub: linux (R-devel), macos x86 (R-devel), macos-arm64 (R-devel),
   windows (R-devel)
 - win-builder: R-release, R-devel, R-oldrelease
 
 ## R CMD check results
-
 0 errors | 0 warnings | 1 note
 
 * checking for future file timestamps: unable to verify current time
-  (network issue on check server, not package-related)
+  - This is a local network issue and does not occur on CRAN servers
 

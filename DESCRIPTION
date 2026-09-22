@@ -1,7 +1,7 @@
 Package: yaleBraille
 Type: Package
 Title: Generate Braille-Enabled Graphics
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person(
         given = "Mike",
@@ -16,7 +16,9 @@ Authors@R: c(
         comment = "Authors of the bundled liblouis C library (https://liblouis.io)"
     )
   )
-Description: Generates data visualizations suited for low-vision and blind persons. Graphics intended for printing on swell paper. Utilizes the 'liblouis' Braille translation library.
+Description: Provides tools for rendering and visualizing 
+    Braille patterns in R, using the liblouis translation library. 
+    For more information see <https://github.com/wininger/yaleBraille>.
 License: LGPL (>= 2.1)
 Imports:
     grDevices,
