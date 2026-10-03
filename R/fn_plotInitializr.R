@@ -23,8 +23,8 @@ fn_plotInitializr=function(a){
   writename = paste0(a$dir,a$stem,".pdf")
   pdf(writename, width=8.5, height=11)
   oldpar = par(no.readonly = TRUE)
-  on.exit(par(oldpar))
-  par(mai = c(3.5, 2, 3, 1), xpd = NA,lwd=3)
+#  on.exit(par(oldpar))
+  par(mai = c(3.5, 2.2, 3.5, 1), xpd = NA, lwd = 3)
 
   # ~~ return updated arguments set
   return(a)

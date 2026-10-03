@@ -9,3 +9,5 @@ src/liblouis/*.o
 *.o
 *.so
 .Rhistory
+/doc/
+/Meta/
